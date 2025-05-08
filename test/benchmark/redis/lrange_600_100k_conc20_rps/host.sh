@@ -13,12 +13,12 @@ stop_guest() {
 # Trap EXIT signal to ensure guest VM is stopped on script exit
 trap stop_guest EXIT
 
-FILESIZE=16384
-
 # Run apache bench
-echo "Warm up......"
-ab -n 20000 -c 32 http://${GUEST_SERVER_IP_ADDRESS}:8080/${FILESIZE}bytes.html >/dev/null 2>&1
 echo "Running apache bench connected to $GUEST_SERVER_IP_ADDRESS"
-ab -n 200000 -c 32 http://${GUEST_SERVER_IP_ADDRESS}:8080/${FILESIZE}bytes.html
+
+# getpid
+echo $$
+
+/usr/local/redis/bin/redis-benchmark -h $GUEST_SERVER_IP_ADDRESS -n 100000 -c 20 -t lrange --csv > redis-$$.csv
 
 # The trap will automatically stop the guest VM when the script exits
