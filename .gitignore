@@ -31,7 +31,7 @@ aster-nix-profile-*.folded
 aster-nix-profile-*.svg
 
 eval/performance/result/
-eval/tcb/tmp/
+eval/safety/tmp/
 test/benchmark/aster_output.txt
 test/benchmark/linux_output.txt
 test/benchmark/result_template.json
