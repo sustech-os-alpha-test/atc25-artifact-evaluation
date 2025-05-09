@@ -51,13 +51,13 @@ Follow the three simple steps below to get Asterinas up and running.
 1. Download the latest source code.
 
 ```bash
-git clone https://github.com/asterinas/asterinas
+git clone --single-branch -b main https://github.com/asterinas/atc25-artifact-evaluation
 ```
 
 2. Run a Docker container as the development environment.
 
 ```bash
-docker run -it --privileged --network=host --device=/dev/kvm -v $(pwd)/asterinas:/root/asterinas asterinas/asterinas:0.14.1-20250326
+docker run -it --privileged --network=host --device=/dev/kvm -v $(pwd)/atc25-artifact-evaluation:/root/asterinas asterinas/asterinas:0.14.1-20250326
 ```
 
 3. Inside the container, go to the project folder to build and run Asterinas.
