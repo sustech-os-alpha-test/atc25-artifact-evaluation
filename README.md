@@ -1,16 +1,24 @@
+# Asterinas ATC'25 Artifact Evaluation
+
+This repository provides the artifacts and instructions to conduct artifact evaluation for the following paper.
+
+> Yuke Peng, Hongliang Tian, Zhang Junyang, Ruihan Li, Chengjun Chen, Jianfeng Jiang, Jinyi Xian, Yingwei Luo, Xiaolin Wang, Chenren Xu, Diyu Zhou, Shoumeng Yan, Yinqian Zhang. _Asterinas: A Linux ABI-Compatible, Rust-Based Framekernel OS with a Small and Sound TCB_. USENIX ATC'25.
+
+The main artifacts described by the paper can be found:
+* OSDK: the [osdk/](osdk/) directory;
+* Asterinas: the [kernel/](kernel/) directory;
+* KernMiri: the [`kern_miri`](https://github.com/asterinas/atc25-artifact-evaluation/tree/kern_miri) branch. Note that KernMiri is a prototype and only supported by a [specific branch of Asterinas](https://github.com/asterinas/atc25-artifact-evaluation/tree/miri_asterinas).
+
+Follow [this evaluation document](eval/README.md) to reproduce the main results reported by the paper.
+
+The most up-to-date version of Asterinas can be found [here](https://github.com/asterinas/asterinas).
+
+-----
+
 <p align="center">
     <img src="docs/src/images/logo_en.svg" alt="asterinas-logo" width="620"><br>
     A secure, fast, and general-purpose OS kernel written in Rust and compatible with Linux<br/>
-    <a href="https://github.com/asterinas/asterinas/actions/workflows/test_x86.yml"><img src="https://github.com/asterinas/asterinas/actions/workflows/test_x86.yml/badge.svg?event=push" alt="Test x86-64" style="max-width: 100%;"></a>
-    <a href="https://github.com/asterinas/asterinas/actions/workflows/test_riscv.yml"><img src="https://github.com/asterinas/asterinas/actions/workflows/test_riscv.yml/badge.svg?event=push" alt="Test riscv64" style="max-width: 100%;"></a>
-    <a href="https://github.com/asterinas/asterinas/actions/workflows/test_x86_tdx.yml"><img src="https://github.com/asterinas/asterinas/actions/workflows/test_x86_tdx.yml/badge.svg" alt="Test Intel TDX" style="max-width: 100%;"></a>
-    <a href="https://asterinas.github.io/benchmark/x86-64/"><img src="https://github.com/asterinas/asterinas/actions/workflows/benchmark_x86.yml/badge.svg" alt="Benchmark x86-64" style="max-width: 100%;"></a>
-    <br/>
 </p>
-
-English | [中文版](README_CN.md) | [日本語](README_JP.md)
-
-**NEWS: [USENIX ATC'25](https://www.usenix.org/conference/atc25) accepted two research papers on Asterinas: (1) _Asterinas: A Linux ABI-Compatible, Rust-Based Framekernel OS with a Small and Sound TCB_ and (2) _Converos: Practical Model Checking for Verifying Rust OS Kernel Concurrency_. Congratulations to the Asterinas community🎉🎉🎉**
 
 ## Introducing Asterinas
 
