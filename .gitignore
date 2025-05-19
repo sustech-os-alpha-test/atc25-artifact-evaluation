@@ -31,6 +31,13 @@ aster-nix-profile-*.folded
 aster-nix-profile-*.svg
 
 eval/performance/result/
+eval/performance/result-all
+eval/performance/result-all-no-iommu
+*.csv
+result_*.json
+aster_output.txt
+linux_output.txt
+Ratio-summary.json
 eval/safety/tmp/
 test/benchmark/aster_output.txt
 test/benchmark/linux_output.txt

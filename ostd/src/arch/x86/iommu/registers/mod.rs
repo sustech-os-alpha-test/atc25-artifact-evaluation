@@ -33,7 +33,7 @@ use crate::{
         iommu::{
             fault,
             invalidate::{
-                descriptor::{InterruptEntryCache, InvalidationWait},
+                descriptor::{InterruptEntryCache, InvalidationWait, IotlbInvalidation},
                 QUEUE,
             },
         },
@@ -171,6 +171,33 @@ impl IommuRegisters {
             self.write_global_command(GlobalCommand::CFI, false);
             while self.read_global_status().contains(GlobalStatus::CFIS) {}
         }
+    }
+
+    pub(super) fn invalidate_iotlb(&mut self, daddr: u64) {
+        assert!(self
+            .read_extended_capability()
+            .flags()
+            .contains(ExtendedCapabilityFlags::QI));
+        let mut queue = QUEUE.get().unwrap().lock();
+
+        // Construct global invalidation of interrupt cache and invalidation wait.
+        queue.append_descriptor(IotlbInvalidation::with_address(daddr).0);
+        let tail = queue.tail();
+        self.invalidate
+            .queue_tail
+            .as_mut_ptr()
+            .write((tail << 4) as u64);
+        // while (self.invalidate.queue_head.as_ptr().read() >> 4) + 1 == tail as u64 {}
+
+        // We need to set the interrupt flag so that the `Invalidation Completion Status Register` can report the completion status.
+        // queue.append_descriptor(InvalidationWait::with_interrupt_flag().0);
+        // self.invalidate
+        //     .queue_tail
+        //     .as_mut_ptr()
+        //     .write((queue.tail() << 4) as u64);
+
+        // // Wait for completion
+        // while self.invalidate.completion_status.as_ptr().read() == 0 {}
     }
 
     pub(super) fn enable_queued_invalidation(&mut self, queue: &Queue) {

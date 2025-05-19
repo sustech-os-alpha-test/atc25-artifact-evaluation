@@ -15,17 +15,17 @@ pub struct Queue {
 
 impl Queue {
     pub fn append_descriptor(&mut self, descriptor: u128) {
-        if self.tail == self.queue_size {
-            self.tail = 0;
-        }
+        // if self.tail == self.queue_size - 1 {
+        //     self.tail = 0;
+        // }
         self.segment
-            .write_val(self.tail * size_of::<u128>(), &descriptor)
+            .write_val((self.tail % (self.queue_size)) * size_of::<u128>(), &descriptor)
             .unwrap();
         self.tail += 1;
     }
 
     pub fn tail(&self) -> usize {
-        self.tail
+        self.tail % (self.queue_size)
     }
 
     pub fn size(&self) -> usize {

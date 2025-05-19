@@ -10,6 +10,7 @@ use ostd_pod::Pod;
 
 use super::second_stage::{DeviceMode, PageTableEntry, PagingConsts};
 use crate::{
+    arch::iommu::registers::IOMMU_REGS,
     bus::pci::PciDeviceLocation,
     mm::{
         dma::Daddr,
@@ -328,6 +329,11 @@ impl ContextTable {
             let result = cursor.take_next(PAGE_SIZE);
             debug_assert!(matches!(result, PageTableItem::MappedUntracked { .. }));
         }
+        IOMMU_REGS
+            .get()
+            .unwrap()
+            .lock()
+            .invalidate_iotlb(daddr as _);
         Ok(())
     }
 }
